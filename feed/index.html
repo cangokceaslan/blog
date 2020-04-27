@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Can Gökçeaslan</title>
+	<atom:link href="http://localhost/wordpress/wordpress/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.cangokceaslan.com/</link>
+	<description>Bugün alacağın karar, yarın çalışacaktır.</description>
+	<lastBuildDate>Mon, 27 Apr 2020 13:53:46 +0000</lastBuildDate>
+	<language>tr</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.4</generator>
+
+<image>
+	<url>https://blog.cangokceaslan.com/wp-content/uploads/2020/04/cropped-logo-letter-c-glitch-distortion-vector-22854899-32x32.jpg</url>
+	<title>Can Gökçeaslan</title>
+	<link>http://blog.cangokceaslan.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>JavaScript üzerinde Asynchronous Task&#8217;ları nasıl kullanırız?</title>
+		<link>https://blog.cangokceaslan.com/yazi/javascript-uzerinde-async-nasil-kullanilir/</link>
+					<comments>https://blog.cangokceaslan.com/yazi/javascript-uzerinde-async-nasil-kullanilir/#respond</comments>
+		
+		<dc:creator><![CDATA[cangokceaslan]]></dc:creator>
+		<pubDate>Sun, 19 Apr 2020 06:37:36 +0000</pubDate>
+				<category><![CDATA[Genel]]></category>
+		<category><![CDATA[JavaScript]]></category>
+		<guid isPermaLink="false">https://blog.cangokceaslan.com/?p=1</guid>
+
+					<description><![CDATA[Merhabalar arkadaşlar, blog&#8217;umun ilk yazısı olarak sizlere merhaba diyorum. Bugün sizlere JavaScript üzerinde Asynchronous Task yani Eş zamanlı çalışmayan bloklar nasıl çalışır onu göstereceğim. İlk olarak tanımamız gereken anahtar kelime async&#8217;dır. Async fonksiyonun veya methodun başına girilerek bu task&#8217;in eş zamanlı çalışmadığını kod içerisinde göstermeye yaramaktadır. Kullanımları da bu şekildedir. Asynchronous Task&#8217;ları Nerede Kullanmalıyız? Asynchronous [&#8230;]]]></description>
+										<content:encoded><![CDATA[
+<p class="has-text-color has-very-dark-gray-color">Merhabalar arkadaşlar, blog&#8217;umun ilk yazısı olarak sizlere merhaba diyorum. Bugün sizlere JavaScript üzerinde Asynchronous Task yani Eş zamanlı çalışmayan bloklar nasıl çalışır onu göstereceğim. İlk olarak tanımamız gereken anahtar kelime async&#8217;dır. Async fonksiyonun veya methodun başına girilerek bu task&#8217;in eş zamanlı çalışmadığını kod içerisinde göstermeye yaramaktadır. Kullanımları da bu şekildedir.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;htmlmixed&quot;,&quot;mime&quot;:&quot;text/html&quot;,&quot;theme&quot;:&quot;colorforth&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;language&quot;:&quot;HTML&quot;,&quot;modeName&quot;:&quot;html&quot;}">async function someFunction(){....}
+async someMethod(){....}
+let someFunction = async function(){....}
+let someFunction =async ()=&gt;{....}  
+someMethod = async()=&gt;{....}</pre></div>
+
+
+
+<h4><strong><strong>Asynchronous Task&#8217;ları Nerede Kullanmalıyız?</strong></strong></h4>
+
+
+
+<p>Asynchronous tasklar genel olarak kodun çalışması zaman aldığı yerlerde kullanılır. Bunlara örnek olarak bir Api üzerinden veri çekmek, bir videoyu işlemek veya büyük boyutlardaki bir dosyanın bir sisteme yüklenmesi gibi yerlerde kullanılmaktadır. Bir işlemi belirli bir saniye bekletip yapmak için de kullanılabilir. Bunun dışında JavaScript içerisindeki bir çok çatı diye tabir ettiğimiz frameworkler&#8217;de bu bloklara rastlayabiliriz.</p>
+
+
+
+<h4>Promise nedir?</h4>
+
+
+
+<p>Promise nesnesi eşzamansız olan&nbsp;ve ertelenen işlemlerde kullanılır. Bir Promise&nbsp;nesnesi henüz işlemin tamamlamadığını ama sonradan tamamlanabileceğini gösterir. Bu nesne <strong>resolve</strong> ve <strong>reject</strong> içeren iki parametreli bir fonksiyon nesnesidir.&nbsp;İlk parametre Promise nesnesi tamamlandığında, ikinci parametre ise reddettiğinde çağrılır. Bu fonksiyonları işlemimiz bittiğinde (başarılı &#8211; resolve yada başarısız &#8211; reject) çağırırız.</p>
+
+
+
+<h4><strong>Asynchronous Task&#8217;ları Nasıl Kullanabiliriz?</strong></h4>
+
+
+
+<p>Asynchronous taskları kullanmak için JavaScript içerisinde birden fazla yol vardır. Bu yollar bu tasklardan sonra yapılacak işlemlere göre pratik methodlardan uzun bloklara uzayabilir. (Yani bir async blok altında yaptığınız işlem başka bir async fonksiyonun trigger edilmesini sağlayabilir.)<br>Temel olarak bu blokların kullanımının 2 yolu vardır. İlk olarak ve en kolay olarak bu taskları <code>.then(()=&gt;{</code>&#8230;<code>})</code> methodu ile kullanabiliriz. Bu methodu kullanmak için daha önceden yazmış olduğunuz async bloku bu başlatmanız daha sonra da yapacağınız işlemleri &#8230; yerine koymanız gerekmektedir. Bunu yapmak için normal koşullarda async task içerisinde çoğunlukla bir Promise yaratmanız gerekmektir. Yoksa kodunuz doğru şekilde bekleme yapmaz ve normal blokmuş gibi çalışmaya devam eder.<br> Hemen ilk örneğimize bakalım.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;javascript&quot;,&quot;mime&quot;:&quot;text/javascript&quot;,&quot;theme&quot;:&quot;colorforth&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;language&quot;:&quot;JavaScript&quot;,&quot;modeName&quot;:&quot;js&quot;}">async function wait(second){
+    return new Promise((resolve,reject)=&gt;{
+    	setTimeout(function(){
+        	console.log('Bu işlem ',second,' saniye sonra yapılmıştır');
+            resolve(true);
+        },second);
+	})
+}
+let second = 3000;
+wait(second).then((result)=&gt;{
+	if(result === true){
+		console.log('Task ',second,' saniye sonra başarıyla tamamlanmıştır. Bir sonraki kodu buraya koyabiliriz.');
+    }
+})</pre></div>
+
+
+
+<p>Başka bir kullanım olarak da await kullanabiliriz. Anahtar kelimemizi hem async blok altında hem de async blok&#8217;u çalıştırmaya başlamadan önce koyarak kullanabiliriz.  Hazırsanız kullanalım.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;javascript&quot;,&quot;mime&quot;:&quot;text/javascript&quot;,&quot;theme&quot;:&quot;colorforth&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;language&quot;:&quot;JavaScript&quot;,&quot;modeName&quot;:&quot;js&quot;}">async function wait(second){
+    return new Promise((resolve,reject)=&gt;{
+    	setTimeout(function(){
+        	console.log('Bu işlem ',second,' saniye sonra yapılmıştır');
+            resolve(true);
+        },second);
+	})
+}
+let second = 3000;
+let result = await wait(second);
+if(result === true){
+	console.log('Task ',second,' saniye sonra başarıyla tamamlanmıştır. Bir sonraki kodu buraya koyabiliriz.');
+}</pre></div>
+
+
+
+<h4>Gerçek bir veri çekelim hadi !!!</h4>
+
+
+
+<p>Şimdi de son olarak gerçek bir veri çekme kodu koyalım buraya ki işleyişi daha da rahat anlayın.</p>
+
+
+
+<div class="wp-block-codemirror-blocks-code-block code-block"><pre class="CodeMirror" data-setting="{&quot;mode&quot;:&quot;javascript&quot;,&quot;mime&quot;:&quot;text/javascript&quot;,&quot;theme&quot;:&quot;colorforth&quot;,&quot;lineNumbers&quot;:true,&quot;styleActiveLine&quot;:true,&quot;lineWrapping&quot;:false,&quot;readOnly&quot;:true,&quot;language&quot;:&quot;JavaScript&quot;,&quot;modeName&quot;:&quot;js&quot;}">async function getUserAsync(name) 
+{
+  let response = await fetch(`https://api.github.com/users/${name}`);
+  let data = await response.json()
+  return data;
+}
+
+getUserAsync('cangokceaslan')
+  .then(data =&gt; alert(JSON.stringify(data))); </pre></div>
+
+
+
+<p>Bu son örnek benim GitHub bilgilerimi Github&#8217;ın User Api&#8217;sini kullanarak profil bilgilerimi alıyor. Bu kodu direkt konsola koyarak çalıştırabilirsiniz. <em>NodeJs konsolunda bu örnek çalışmayacaktır çünkü fetch methodu tanımlı değil NodeJs üzerinde.</em></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://blog.cangokceaslan.com/yazi/javascript-uzerinde-async-nasil-kullanilir/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>
